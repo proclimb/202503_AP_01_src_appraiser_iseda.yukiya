@@ -6,14 +6,14 @@ function subArticle()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDrawing     = $_REQUEST['sDrawing'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDrawing     = htmlspecialchars($_REQUEST['sDrawing']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
 
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
@@ -113,24 +113,24 @@ function subArticle()
 			$res = mysqli_query($conn, $sql);
 			$i = 0;
 			while ($row = mysqli_fetch_array($res)) {
-				$articleNo   = $row["ARTICLENO"];
-				$article     = $row["ARTICLE"];
-				$room        = $row["ROOM"];
-				$keyPlace    = $row["KEYPLACE"];
-				$articleNote =  $row["ARTICLENOTE"];
-				$keyBox      = $row["KEYBOX"];
-				$drawing     = $row["DRAWING"];
-				$sellCharge  = $row["SELLCHARGE"];
+				$articleNo   = htmlspecialchars($row[0]);
+				$article     = htmlspecialchars($row[1]);
+				$room        = htmlspecialchars($row[2]);
+				$keyPlace    = htmlspecialchars($row[3]);
+				$articleNote = htmlspecialchars($row[4]);
+				$keyBox      = htmlspecialchars($row[5]);
+				$drawing     = htmlspecialchars($row[6]);
+				$sellCharge  = htmlspecialchars($row[7]);
 			?>
 				<tr>
-					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $rrticleNo ?>';form.submit();"><?php print $article ?></a></td>
+					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
 					<td class="list_td<?php print $i ?>"><?php print $room ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $drawing ?></td>
 					<td class="list_td<?php print $i ?>"><?php print $keyPlace ?></td>
 					<td class="list_td<?php print $i ?>"><?php print $articleNote ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $room ?></td>
+					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='fManager';form.sName.value='<?php print $article ?>';form.sRoom.value='<?php print $room ?>';form.submit();">表示</a></td>
+					<td class="list_td<?php print $i ?>"><?php print $keyBox ?></td>
+					<td class="list_td<?php print $i ?>"><?php print $drawing ?></td>
 					<td class="list_td<?php print $i ?>"><?php print $sellCharge ?></td>
-					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='stock';form.sName.value='<?php print $article ?>';form.sRoom.value='<?php print $room ?>';form.submit();">表示</a></td>
 				</tr>
 			<?php
 				$i = ($i + 1) % 3;
@@ -151,19 +151,18 @@ function subArticleEdit()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDueDTFrom   = $_REQUEST['sDueDTFrom'];
-	$sDueDTTo     = $_REQUEST['sDueDTTo'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
-
-	$orderBy = $_REQUEST['orderBy'];
-	$orderTo = $_REQUEST['orderTo'];
-	$sPage   = $_REQUEST['sPage'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
+	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
+	$orderBy = htmlspecialchars($_REQUEST['orderBy']);
+	$orderTo = htmlspecialchars($_REQUEST['orderTo']);
+	$sPage   = htmlspecialchars($_REQUEST['sPage']);
 
 	$articleNo = $_REQUEST['articleNo'];
 
@@ -172,15 +171,15 @@ function subArticleEdit()
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
 
-		$article     =  $row["ARTICLE"];
-		$room        =  $row["ROOM"];
-		$keyPlace    =  $row["KEYPLACE"];
-		$address     =  $row["ADDRESS"];
-		$articleNote =  $row["ARTICLENOTE"];
-		$keyBox      =  $row["KEYBOX"];
-		$drawing     =  $row["DRAWING"];
-		$sellCharge  =  $row["SELLCHARGE"];
-		$del         =  $row["DEL"];
+		$article     =  htmlspecialchars($row[0]);
+		$room        =  htmlspecialchars($row[1]);
+		$keyPlace    =  htmlspecialchars($row[2]);
+		$address     =  htmlspecialchars($row[3]);
+		$articleNote =  htmlspecialchars($row[4]);
+		$keyBox      =  htmlspecialchars($row[5]);
+		$drawing     =  htmlspecialchars($row[6]);
+		$sellCharge  =  htmlspecialchars($row[7]);
+		$del         =  htmlspecialchars($row[8]);
 
 		$purpose  = '更新';
 		$btnImage = 'btn_load.png';
@@ -279,30 +278,30 @@ function subArticleEditComplete()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDueDTFrom   = $_REQUEST['sDueDTFrom'];
-	$sDueDTTo     = $_REQUEST['sDueDTTo'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
+	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
 
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
 	$sPage   = $_REQUEST['sPage'];
 
-	$articleNo   = $_REQUEST['articleNo'];
-	$article     = $_REQUEST['article'];
-	$room        = $_REQUEST['room'];
-	$keyPlace    = $_REQUEST['keyPlace'];
-	$address     = $_REQUEST['address'];
-	$articleNote = $_REQUEST['articleNote'];
-	$keyBox      = $_REQUEST['keyBox'];
-	$drawing     = $_REQUEST['drawing'];
-	$sellCharge  = $_REQUEST['sellCharge'];
-	$del         = $_REQUEST['del'];
+	$articleNo   = mysqli_real_escape_string($conn, $_REQUEST['articleNo']);
+	$article     = mysqli_real_escape_string($conn, $_REQUEST['article']);
+	$room        = mysqli_real_escape_string($conn, $_REQUEST['room']);
+	$keyPlace    = mysqli_real_escape_string($conn, $_REQUEST['keyPlace']);
+	$address     = mysqli_real_escape_string($conn, $_REQUEST['address']);
+	$articleNote = mysqli_real_escape_string($conn, $_REQUEST['articleNote']);
+	$keyBox      = mysqli_real_escape_string($conn, $_REQUEST['keyBox']);
+	$drawing     = mysqli_real_escape_string($conn, $_REQUEST['drawing']);
+	$sellCharge  = mysqli_real_escape_string($conn, $_REQUEST['sellCharge']);
+	$del         = mysqli_real_escape_string($conn, $_REQUEST['del']);
 
 	if ($articleNo) {
 		// 編集

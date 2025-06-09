@@ -61,21 +61,21 @@ function fnArticleEditCheck() {
 			alert('営業担当者は100文字以内で入力してください');
 			return;
 		}
+*/
 
-
-		if (confirm('この内容で登録します。よろしいですか？')) {
-			form.act.value = 'articleEditComplete';
-			form.submit();
-		}
+	if (confirm('この内容で登録します。よろしいですか？')) {
+		form.act.value = 'articleEditComplete';
+		form.submit();
 	}
+}
 
-	*/
 
-	function fnArticleDeleteCheck(no) {
 
-		if (confirm('削除します。よろしいですか？')) {
-			form.articleNo.value = no;
-			form.act.value = 'articleDelete';
-			form.submit();
-		}
+function fnArticleDeleteCheck(no) {
+
+	if (confirm('削除します。よろしいですか？')) {
+		form.articleNo.value = no;
+		form.act.value = 'articleDelete';
+		form.submit();
 	}
+}
